@@ -204,6 +204,22 @@ namespace evo::ren
 			value = eval_scalar(start, end);
 		}
 
+		void direct(const float& a, const float& t) override
+		{
+			if (end == t && start == a && time < 1.f)
+				return;
+			anim<float>::direct(a, t);
+			value = eval_scalar(start, end);
+		}
+
+		void direct(const float& t) override
+		{
+			if (end == t && time < 1.f)
+				return;
+			anim<float>::direct(t);
+			value = eval_scalar(start, end);
+		}
+
 	};
 
 	class anim_vec2 : public anim<vec2>
